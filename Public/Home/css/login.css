@@ -1,3 +1,126 @@
-html, body {
-	background:#eee;
+/* 自定义Jquery UI皮肤 */
+.ui-dialog-titlebar {
+	background: #789 !important;
+}
+
+.ui-dialog {
+	border: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	
+	background: #666;
+}
+
+#header {
+	position: relative;
+	top: 100px;
+	
+	margin: 0 auto;
+	width: 200px;
+	height: 150px;
+	
+	background: url(../img/logo.png) no-repeat;
+	
+}
+
+#main {
+	position: relative;
+	top: 150px;
+	
+	text-align: center;
+}
+
+#login input[type="text"],
+#login input[type="password"] {
+	margin-right: 10px;
+	
+	border: 1px solid #d2d2d2;
+	border-radius: 5px;
+	width: 250px;
+	height: 40px;
+	
+	font-family: Tahoma;
+	font-size: 18px;
+	line-height: 25px;
+	
+	background: #000;
+	color: #fff;
+}
+
+#login input[type="submit"] {
+	position: relative;
+	top: -4px;
+	
+	width: 150px;
+	height: 50px;
+	
+	font-family: 黑体;
+	font-size: 24px;
+	
+	background-color: #c3c3c3;
+}
+
+#login input[type="submit"]:hover {
+	background-color: #3c3c3c;
+}
+
+#login .bottom {
+	margin: 0 auto;
+	padding: 10px;
+	width: 380px;
+	
+	font-size: 14px;
+	color: #eee;
+	text-align: right;
+}
+
+#login .bottom a {
+	color: #eee;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px #333;
+}
+
+#login .bottom a:hover {
+	text-decoration: underline;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	
+	width: 100%;
+	height: 40px;
+		
+	opacity: 0.4;
+	background: #000;
+}
+
+.footer_text {
+	position: absolute;
+	bottom: 0;
+	
+	width: 100%;
+	
+	text-align: center;
+	font-size: 13px;
+	color: #000;
+}
+
+#register input.text {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	width: 270px; 
+	height: 25px;
+	
+	background: #fff;
+	
+}
+
+#register form span.star {
+	color: red;
 }
