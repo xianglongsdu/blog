@@ -6,4 +6,9 @@ class LoginController extends Controller {
 	public function index() {
 		$this->display();
 	}
+	
+	public function test() {
+		$user = M("user");
+		dump($user->select());
+	}
 }

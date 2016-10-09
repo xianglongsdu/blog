@@ -40,11 +40,13 @@
 					<label for="user">账号：</label>
 					<input type="text" name="user" class="text" id="user" placeholder="昵称，不小于两位！">
 					<span class="star">*</span>
-	
+				</p>
+				<p>
 					<label for="password">密码：</label>
 					<input type="password" name="password" class="text" id="password" placeholder="密码，不小于6位！">
 					<span class="star">*</span>
-				
+				</p>
+				<p>
 					<label for="email">邮箱：</label>
 					<input type="email" name="email" class="text" id="email" placeholder="邮箱，用于找回密码！">
 					<span class="star">*</span>
