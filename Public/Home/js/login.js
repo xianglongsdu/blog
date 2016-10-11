@@ -21,10 +21,18 @@ $(function(){
 		buttons: [{
 			text: "提交",
 			click: function(e) {
-				
+				$(this).submit();
 			},
 		}],
 		
+	}).validate({
+		submitHandler: function(form) {
+			$(form).ajaxSubmit({
+				url: ThinkPHP["MODULE"] + "/User/register"
+				,
+				type: "POST",
+			});
+		},
 	});
 	
 	$("#reg_link").click(function() {

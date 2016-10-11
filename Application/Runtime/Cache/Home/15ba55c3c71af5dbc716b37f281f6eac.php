@@ -6,11 +6,14 @@
 		<script type="text/javascript" src="/Public/Home/js/jquery.js"></script>
 		<script type="text/javascript" src="/Public/Home/js/jquery.ui.js"></script>
 		<script type="text/javascript" src="/Public/Home/js/login.js"></script>
+		<script type="text/javascript" src="/Public/Home/js/jquery.validate.js"></script>
+		<script type="text/javascript" src="/Public/Home/js/jquery.form.js"></script>
 		<link rel="stylesheet" href="/Public/Home/css/jquery.ui.css">
 		<link rel="stylesheet" href="/Public/Home/css/login.css">
 		<script type="text/javascript">
 			var ThinkPHP = {
 				"IMG" : "/Public/<?php echo MODULE_NAME;?>/img",
+				"MODULE" : "/index.php/Home"
 			};
 		</script>
 	</head>
@@ -25,7 +28,7 @@
 					<input type="submit" name="submit" value="登录">
 				</div>
 				<div class="bottom">
-					<a href="javascript:void()" id="reg_link">注册新用户</a>
+					<a href="javascript:void(0)" id="reg_link">注册新用户</a>
 					<a href="javascript:void(0)">忘记密码？</a>
 				</div>
 			</form>
@@ -34,24 +37,22 @@
 		<div id="footer"></div>
 		<p class="footer_text">Juedi's blog</p>
 		
-		<div id="register">
-			<form>
-				<p>
-					<label for="user">账号：</label>
-					<input type="text" name="user" class="text" id="user" placeholder="昵称，不小于两位！">
-					<span class="star">*</span>
-				</p>
-				<p>
-					<label for="password">密码：</label>
-					<input type="password" name="password" class="text" id="password" placeholder="密码，不小于6位！">
-					<span class="star">*</span>
-				</p>
-				<p>
-					<label for="email">邮箱：</label>
-					<input type="email" name="email" class="text" id="email" placeholder="邮箱，用于找回密码！">
-					<span class="star">*</span>
-				</p>
-			</form>
-		</div>
+		<form id="register" action="123.html">
+			<p>
+				<label for="user">账号：</label>
+				<input type="text" name="username" class="text" id="user" placeholder="昵称，不小于两位！">
+				<span class="star">*</span>
+			</p>
+			<p>
+				<label for="password">密码：</label>
+				<input type="password" name="password" class="text" id="password" placeholder="密码，不小于6位！">
+				<span class="star">*</span>
+			</p>
+			<p>
+				<label for="email">邮箱：</label>
+				<input type="email" name="email" class="text" id="email" placeholder="邮箱，用于找回密码！">
+				<span class="star">*</span>
+			</p>
+		</form>
 	</body>
 </html>
