@@ -49,6 +49,11 @@
 				<span class="star">*</span>
 			</p>
 			<p>
+				<label for="repassword">确认：</label>
+				<input type="password" name="repassword" class="text" id="repassword" placeholder="密码和密码确认必须一致！">
+				<span class="star">*</span>
+			</p>
+			<p>
 				<label for="email">邮箱：</label>
 				<input type="email" name="email" class="text" id="email" placeholder="邮箱，用于找回密码！">
 				<span class="star">*</span>

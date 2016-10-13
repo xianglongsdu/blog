@@ -12,7 +12,7 @@ $(function(){
 	//创建注册对话框
 	$("#register").dialog({
 		width: 430,
-		height: 330,
+		height: 370,
 		modal: true,
 		resizable: false,
 		autoOpen: false,
@@ -28,8 +28,7 @@ $(function(){
 	}).validate({
 		submitHandler: function(form) {
 			$(form).ajaxSubmit({
-				url: ThinkPHP["MODULE"] + "/User/register"
-				,
+				url: ThinkPHP["MODULE"] + "/User/register",
 				type: "POST",
 			});
 		},
