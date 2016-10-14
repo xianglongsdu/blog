@@ -32,6 +32,58 @@ $(function(){
 				type: "POST",
 			});
 		},
+		
+		rules: {
+			username: {
+				required: true,
+				minlength: 2,
+				maxlength: 20,
+			},
+			password: {
+				required: true,
+				minlength: 6,
+				maxlength: 30,
+			},
+			repassword: {
+				required: true,
+				equalTo: '#password',
+			},
+			email: {
+				required: true,
+				email: true,
+			},
+		},
+		
+		messages: {
+			username: {
+				required: '账号不得为空',
+				minlength: $.format('账号不得小于{0}位！'),
+				maxlength: $.format('账号不得大于{0}位！'),
+			},
+			password: {
+				required: '密码不得为空',
+				minlength: $.format('密码不得小于{0}位！'),
+				maxlength: $.format('密码不得大于{0}位！'),
+			},
+			repassword: {
+				required: '密码确认不得为空',
+				equalTo: '密码和密码确认必须一致!',
+			},
+			email: {
+				required: '邮箱不得为空',
+				email: '邮箱格式不正确',
+			},
+		},
+		
+		showErrors: function(errorMap, errorList) {
+			this.defaultShowErrors();
+		},
+		
+		errorLabelContainer: 'ol.register_errors',
+		
+		wrapper: 'li',
+		
+		
 	});
 	
 	$("#reg_link").click(function() {

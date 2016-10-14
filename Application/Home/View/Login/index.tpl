@@ -38,6 +38,7 @@
 		<p class="footer_text">Juedi's blog</p>
 		
 		<form id="register" action="123.html">
+			<ol class="register_errors"></ol>
 			<p>
 				<label for="user">账号：</label>
 				<input type="text" name="username" class="text" id="user" placeholder="昵称，不小于两位！">
