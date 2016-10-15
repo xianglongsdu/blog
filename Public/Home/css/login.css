@@ -121,6 +121,36 @@ body {
 	
 }
 
-#register form span.star {
+#register  span.star {
 	color: red;
+}
+
+#register span.succ {
+	display: inline-block;
+	
+	padding: 5px;
+	width: 28px;
+	height: 28px;
+	
+	background: url(../img/success.png) no-repeat top;
+}
+
+#register span.failure {
+	display: inline-block;
+	
+	padding: 5px;
+	width: 28px;
+	height: 28px;
+	
+	background: url(../img/failure.png) no-repeat top;
+}
+
+#register ol.register_errors {
+	margin: 0;
+	padding: 0 0 0 20px;
+	color: red;
+}
+
+#register ol.register_errors li {
+	height: 20px;
 }

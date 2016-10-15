@@ -76,7 +76,23 @@ $(function(){
 		},
 		
 		showErrors: function(errorMap, errorList) {
+			var errors = this.numberOfInvalids();
+			if (errors > 0){
+				$("#register").dialog('option', 'height', errors * 20 + 380);
+			} else {
+				$("#register").dialog('option', 'height', 380);
+			};
 			this.defaultShowErrors();
+		},
+		
+		highlight: function(element, errorClass) {
+			$(element).css('border', '1px solid red');
+			$(element).parent().find('span').html('&nbsp;').removeClass('succ').addClass('failure');
+		},
+		
+		unhighlight: function(element, errorClass) {
+			$(element).css('border', '1px solid #ccc');
+			$(element).parent().find('span').html('&nbsp;').removeClass('star').addClass('succ');
 		},
 		
 		errorLabelContainer: 'ol.register_errors',
