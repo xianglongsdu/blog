@@ -145,6 +145,16 @@ body {
 	background: url(../img/failure.png) no-repeat top;
 }
 
+#register span.loading {
+	display: inline-block;
+	
+	padding: 5px;
+	width: 28px;
+	height: 28px;
+	
+	background: url(../img/loading.gif) no-repeat top;
+}
+
 #register ol.register_errors {
 	margin: 0;
 	padding: 0 0 0 20px;

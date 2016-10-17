@@ -47,4 +47,22 @@ class UserModel extends Model {
 			return $this->getError();
 		}
 	}
+	
+	//验证占用字段
+	public function checkField($field, $type) {
+		$data = array();
+		switch ($type) {
+			case 'username':
+				$data['username'] = $field;
+				break;
+			case 'email':
+				$data['email'] = $field;
+				break;
+			default:
+				return 0;
+		}
+		
+		return $this->create($data)? 1 : $this->getError();
+		
+	}
 }

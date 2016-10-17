@@ -38,6 +38,20 @@ $(function(){
 				required: true,
 				minlength: 2,
 				maxlength: 20,
+				remote: {
+					url: ThinkPHP['MODULE']  + '/User/checkUserName',
+					type: 'POST',
+					beforeSend: function() {
+						$('username').next().html('&nbsp;').removeClass('succ').addClass('loading');
+					},
+					complete: function(jqXHR) {
+						if (jqXHR.responseText) {
+							$('username').next().html('&nbsp;').removeClass('loading').addClass('succ');
+						} else {
+							$('username').next().html('&nbsp;').removeClass('loading').addClass('failure');
+						}
+					}
+				},
 			},
 			password: {
 				required: true,
@@ -51,6 +65,20 @@ $(function(){
 			email: {
 				required: true,
 				email: true,
+				remote: {
+					url: ThinkPHP['MODULE']  + '/User/CheckEmail',
+					type: 'POST',
+					beforeSend: function() {
+						$('username').next().html('&nbsp;').removeClass('succ').addClass('loading');
+					},
+					complete: function(jqXHR) {
+						if (jqXHR.responseText) {
+							$('username').next().html('&nbsp;').removeClass('loading').addClass('succ');
+						} else {
+							$('username').next().html('&nbsp;').removeClass('loading').addClass('failure');
+						}
+					}
+				},				
 			},
 		},
 		
@@ -59,6 +87,7 @@ $(function(){
 				required: '账号不得为空',
 				minlength: $.format('账号不得小于{0}位！'),
 				maxlength: $.format('账号不得大于{0}位！'),
+				remote: '账号被占用',
 			},
 			password: {
 				required: '密码不得为空',
@@ -72,6 +101,7 @@ $(function(){
 			email: {
 				required: '邮箱不得为空',
 				email: '邮箱格式不正确',
+				remote: '邮箱被占用',
 			},
 		},
 		
