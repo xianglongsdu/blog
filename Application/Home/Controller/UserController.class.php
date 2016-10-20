@@ -7,6 +7,7 @@ class UserController extends Controller {
 	//注册行为返回Ajax
 	public function register() {
 		if (IS_AJAX) {
+			sleep(5);
 			$user = new UserModel();
 			$uid = $user->register(I('username'), I('password'), I('repassword'), I('email'));
 			echo $uid;
@@ -18,7 +19,6 @@ class UserController extends Controller {
 	//Ajax验证数据，账号返回给Ajax
 	public function checkUserName() {
 		if (IS_AJAX) {
-			sleep(3);
 			$user = new UserModel();
 			$uid = $user->checkField(I('username'), 'username');
 			echo $uid > 0? 'true' : 'false';

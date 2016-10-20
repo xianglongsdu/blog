@@ -5,6 +5,7 @@
 
 .ui-dialog {
 	border: none;
+	overflow: visible;
 }
 
 body {
@@ -153,6 +154,17 @@ body {
 	height: 28px;
 	
 	background: url(../img/loading.gif) no-repeat top;
+}
+
+#loading {
+	
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	line-height: 25px;
+	text-indent: 40px;
+	
+	background: url(../img/loading.gif) no-repeat 20px center;
 }
 
 #register ol.register_errors {

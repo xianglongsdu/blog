@@ -30,6 +30,20 @@ $(function(){
 			$(form).ajaxSubmit({
 				url: ThinkPHP["MODULE"] + "/User/register",
 				type: "POST",
+				beforeSubmit: function() {
+					$('#loading').dialog('open');
+				},
+				success: function(responseText) {
+					if (responseText) {
+						$('#loading').css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('数据新增成功...');
+						setTimeout(function() {
+							$('#register').dialog('close');		//关闭注册界面
+							$('#loading').dialog('close');		//关闭提示界面
+							$('#register').resetForm();			//还原注册表单
+							$('#register span.star').html('*').removeClass('succ');		//恢复*去掉对号
+						}, 1000);
+					}
+				},
 			});
 		},
 		
@@ -41,16 +55,16 @@ $(function(){
 				remote: {
 					url: ThinkPHP['MODULE']  + '/User/checkUserName',
 					type: 'POST',
-					beforeSend: function() {
-						$('username').next().html('&nbsp;').removeClass('succ').addClass('loading');
+					/* beforeSend: function() {
+						$('#username').next().html('&nbsp;').removeClass('succ').addClass('loading');
 					},
 					complete: function(jqXHR) {
-						if (jqXHR.responseText) {
-							$('username').next().html('&nbsp;').removeClass('loading').addClass('succ');
+						if (jqXHR.responseText == 'true') {
+							$('#username').next().html('&nbsp;').removeClass('loading').addClass('succ');
 						} else {
-							$('username').next().html('&nbsp;').removeClass('loading').addClass('failure');
+							$('#username').next().html('&nbsp;').removeClass('loading').addClass('failure');
 						}
-					}
+					} */
 				},
 			},
 			password: {
@@ -68,16 +82,16 @@ $(function(){
 				remote: {
 					url: ThinkPHP['MODULE']  + '/User/CheckEmail',
 					type: 'POST',
-					beforeSend: function() {
-						$('username').next().html('&nbsp;').removeClass('succ').addClass('loading');
+					/* beforeSend: function() {
+						$('#email').next().html('&nbsp;').removeClass('succ').addClass('loading');
 					},
 					complete: function(jqXHR) {
-						if (jqXHR.responseText) {
-							$('username').next().html('&nbsp;').removeClass('loading').addClass('succ');
+						if (jqXHR.responseText == 'true') {
+							$('#email').next().html('&nbsp;').removeClass('loading').addClass('succ');
 						} else {
-							$('username').next().html('&nbsp;').removeClass('loading').addClass('failure');
+							$('#email').next().html('&nbsp;').removeClass('loading').addClass('failure');
 						}
-					}
+					} */
 				},				
 			},
 		},
@@ -122,7 +136,7 @@ $(function(){
 		
 		unhighlight: function(element, errorClass) {
 			$(element).css('border', '1px solid #ccc');
-			$(element).parent().find('span').html('&nbsp;').removeClass('star').addClass('succ');
+			$(element).parent().find('span').html('&nbsp;').removeClass('failure').addClass('succ');
 		},
 		
 		errorLabelContainer: 'ol.register_errors',
@@ -135,4 +149,55 @@ $(function(){
 	$("#reg_link").click(function() {
 		$("#register").dialog("open");
 	});
+	
+	//loading
+	$("#loading").dialog({
+		width: 180,
+		height: 40,
+		modal: true,
+		closeOnEscape: false,    //不允许按Escape键关闭
+		resizable: false,
+		autoOpen: false,
+		draggable: false,
+	}).parent().find('.ui-dialog-titlebar').hide();
+	
+	//邮箱自动补全
+	$("#email").autocomplete({  
+		delay: 0, //默认为300 毫秒，延迟显示设置。  
+		autoFocus:true, //设置为true 时，第一个项目会自动被选定。  
+		source: function (request, response) {  
+
+			var hosts = ["qq.com", "163.com", "263.com", "sina.com.cn", "gmail.com", "hotmail.com"];//邮箱域名集合  
+
+			var term = request.term; //获取用户输入的内容；  
+			var name = term;  //邮箱的用户名  
+			var host = "";   //邮箱的域名 例如qq.com  
+			var ix = term.indexOf('@'); //@的位置  
+
+			var result = []; //最终呈现的邮箱列表  
+			  
+
+			//当用户输入的数据（email）里存在@的时候，就重新给用户名和域名赋值  
+
+			if (ix > -1) { //如果@符号存在，就表示用户已经输入用户名了。  
+				name = term.slice(0, ix);  
+				host = term.slice(ix + 1);  
+			}  
+
+			if (name) { //如果name有值 即：不为空  
+
+				var getHosts = []; //根据用户名填写的域名我们在hosts里面找到对应的域名集合  
+				  
+				getHosts=  host ? ($.grep(hosts, function (val) { return val.indexOf(host) > -1 })) : hosts;  
+
+				result = $.map(getHosts, function (val) { //这个val就是getHosts里的每个域名元素。  
+					return name + "@" + val;  
+				});                  
+			}            
+			result.unshift(term); // unshift方法的作用是：将一个或多个新元素添加到数组开始，数组中的元素自动后移，返回数组新长度  
+
+			response(result);  
+
+		}  
+	});  
 });
