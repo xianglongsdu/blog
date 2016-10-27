@@ -21,6 +21,8 @@ class UserModel extends Model {
 		array('username', '', -5, self::EXISTS_VALIDATE, 'unique', self::MODEL_INSERT),
 		//-6, 邮箱被占用
 		array('email', '', -6, self::EXISTS_VALIDATE, 'unique', self::MODEL_INSERT),
+		//-7, 验证码错误
+		array('verify', 'check_verify', -7, self::EXISTS_VALIDATE, 'function'),
 	);
 		
 	//用户表自动完成
@@ -31,13 +33,14 @@ class UserModel extends Model {
 		
 	
 	//注册一个用户
-	public function register($username, $password, $repassword, $email) {
+	public function register($username, $password, $repassword, $email, $verify) {
 		$data = array(
 			'username'   => $username,
 			'password'   => $password,
 			'repassword' => $repassword,
 			'email'	     => $email,
 			'create'     => time(),
+			'verify' 	 => $verify,
 		);
 		
 		if ($this->create($data)) {
@@ -57,6 +60,9 @@ class UserModel extends Model {
 				break;
 			case 'email':
 				$data['email'] = $field;
+				break;
+			case 'verify':
+				$data['verify'] = $field;
 				break;
 			default:
 				return 0;

@@ -7,8 +7,8 @@ class LoginController extends Controller {
 		$this->display();
 	}
 	
-	public function test() {
-		$user = M("user");
-		dump($user->select());
+	public function verify() {
+		$verify = new \Think\Verify();
+		$verify->entry(1);
 	}
 }

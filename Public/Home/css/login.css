@@ -122,11 +122,11 @@ body {
 	
 }
 
-#register  span.star {
+span.star {
 	color: red;
 }
 
-#register span.succ {
+span.succ {
 	display: inline-block;
 	
 	padding: 5px;
@@ -136,7 +136,7 @@ body {
 	background: url(../img/success.png) no-repeat top;
 }
 
-#register span.failure {
+span.failure {
 	display: inline-block;
 	
 	padding: 5px;
@@ -167,12 +167,36 @@ body {
 	background: url(../img/loading.gif) no-repeat 20px center;
 }
 
-#register ol.register_errors {
+#register ol.register_errors, #verify_register ol.ver_error {
 	margin: 0;
 	padding: 0 0 0 20px;
 	color: red;
 }
 
-#register ol.register_errors li {
+#register ol.register_errors li, #verify_register ol.ver_error li {
 	height: 20px;
+}
+
+#verify_register input.text {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	width: 85px; 
+	height: 25px;
+	
+	background: #fff;	
+}
+
+#verify_register a {
+	color: #036;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+#verify_register a:hover {
+	text-decoration: underline;
+}
+
+#verify_register .changeimg {
+	cursor: pointer;
 }

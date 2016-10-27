@@ -33,4 +33,13 @@ class UserController extends Controller {
 			echo $uid > 0? 'true' : 'false';
 		}
 	}
+	
+	//Ajax验证数据，验证码返回给Ajax
+	public function checKVerify() {
+		if (IS_AJAX) {
+			$user = new UserModel();
+			$uid = $user->checkField(I('verify'), 'verify');
+			echo $uid > 0? 'true' : 'false';
+		}
+	}
 }

@@ -26,25 +26,8 @@ $(function(){
 		}],
 		
 	}).validate({
-		submitHandler: function(form) {
-			$(form).ajaxSubmit({
-				url: ThinkPHP["MODULE"] + "/User/register",
-				type: "POST",
-				beforeSubmit: function() {
-					$('#loading').dialog('open');
-				},
-				success: function(responseText) {
-					if (responseText) {
-						$('#loading').css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('数据新增成功...');
-						setTimeout(function() {
-							$('#register').dialog('close');		//关闭注册界面
-							$('#loading').dialog('close');		//关闭提示界面
-							$('#register').resetForm();			//还原注册表单
-							$('#register span.star').html('*').removeClass('succ');		//恢复*去掉对号
-						}, 1000);
-					}
-				},
-			});
+		submitHandler: function() {
+			$("#verify_register").dialog('open');
 		},
 		
 		rules: {
@@ -176,9 +159,7 @@ $(function(){
 
 			var result = []; //最终呈现的邮箱列表  
 			  
-
 			//当用户输入的数据（email）里存在@的时候，就重新给用户名和域名赋值  
-
 			if (ix > -1) { //如果@符号存在，就表示用户已经输入用户名了。  
 				name = term.slice(0, ix);  
 				host = term.slice(ix + 1);  
@@ -199,5 +180,96 @@ $(function(){
 			response(result);  
 
 		}  
-	});  
+	});
+
+	//验证码
+	$("#verify_register").dialog({
+		width: 290,
+		height: 305,
+		modal: true,
+		resizable: false,
+		autoOpen: false,
+		title: "请输入验证码",
+		closeText: "关闭",
+		buttons: [{
+			text: "完成",
+			click: function(e) {
+				$(this).submit();
+			},
+			style: 'right: 85px',
+		}],	
+	}).validate({
+		submitHandler: function(form) {
+			$('#register').ajaxSubmit({
+				url: ThinkPHP["MODULE"] + "/User/register",
+				type: "POST",
+				data: {
+					verify: $('#verify').val(),
+				},
+				beforeSubmit: function() {
+					$('#loading').dialog('open');
+				},
+				success: function(responseText) {
+					if (responseText) {
+						$('#loading').css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('数据新增成功...');
+						setTimeout(function() {
+							$('#verify_register').dialog('close');		//关闭注册界面
+							$('#loading').dialog('close');		//关闭提示界面
+							$('#verify_register').resetForm();			//还原注册表单
+							$('#span.star').html('*').removeClass('succ');		//恢复*去掉对号
+						}, 1000);
+					}
+				},
+			});
+		},
+		rules: {
+			verify: {
+				required: true,
+				remote: {
+					url: ThinkPHP['MODULE'] + '/User/checkVerify',
+					type: 'POST',
+				},
+			},
+		},
+		messages: {
+			verify: {
+				required: '验证码不得为空',
+				remote: '验证码不正确',
+			},	
+		},
+		showErrors: function(errorMap, errorList) {
+			var errors = this.numberOfInvalids();
+			if (errors > 0){
+				$("#verify_register").dialog('option', 'height', errors * 20 + 305);
+			} else {
+				$("#verify_register").dialog('option', 'height', 305);
+			};
+			this.defaultShowErrors();
+		},
+		
+		highlight: function(element, errorClass) {
+			$(element).css('border', '1px solid red');
+			$(element).parent().find('span').html('&nbsp;').removeClass('succ').addClass('failure');
+		},
+		
+		unhighlight: function(element, errorClass) {
+			$(element).css('border', '1px solid #ccc');
+			$(element).parent().find('span').html('&nbsp;').removeClass('failure').addClass('succ');
+		},
+		
+		errorLabelContainer: 'ol.ver_error',
+		
+		wrapper: 'li',
+	});
+	
+	//点击更换验证码
+	var verifyimg = $('.verifyimg').attr('src');
+	$('.changeimg').click(function(){
+		if (verifyimg.indexOf('?') > 0) {
+			$('.verifyimg').attr('src', verifyimg + '&random=' + Math.random());
+		} else {
+			$('.verifyimg').attr('src', verifyimg + '?random=' + Math.random());
+		}
+		
+	});
 });

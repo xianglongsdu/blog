@@ -40,8 +40,8 @@
 		<form id="register" action="123.html">
 			<ol class="register_errors"></ol>
 			<p>
-				<label for="user">账号：</label>
-				<input type="text" name="username" class="text" id="user" placeholder="昵称，不小于两位！">
+				<label for="username">账号：</label>
+				<input type="text" name="username" class="text" id="username" placeholder="昵称，不小于两位！">
 				<span class="star">*</span>
 			</p>
 			<p>
@@ -62,5 +62,18 @@
 		</form>
 		
 		<div id="loading">数据交互中...</div>
+		
+		<form id="verify_register">
+			<ol class="ver_error"></ol>
+			<p>
+				<label for="verify">验证码：</label>
+				<input type="text" name="verify" class="text" id="verify">
+				<span class="star">*</span>
+				<a href="javascript:void(0)" class="changeimg">换一换</a>
+			</p>
+			<p>
+				<img src='<?php echo U("Login/verify",'','');?>' class="changeimg verifyimg">
+			</p>
+		</form>
 	</body>
 </html>
