@@ -23,6 +23,10 @@ class UserModel extends Model {
 		array('email', '', -6, self::EXISTS_VALIDATE, 'unique', self::MODEL_INSERT),
 		//-7, 验证码错误
 		array('verify', 'check_verify', -7, self::EXISTS_VALIDATE, 'function'),
+		//-8, 登录名长度不合法
+		array('login_username', '2, 50', -8, self::EXISTS_VALIDATE, 'length'),
+		//noemail, 登录名不是email
+		array('login_username', 'email', 'noemail', self::EXISTS_VALIDATE),
 	);
 		
 	//用户表自动完成
@@ -69,6 +73,37 @@ class UserModel extends Model {
 		}
 		
 		return $this->create($data)? 1 : $this->getError();
+		
+	}
+	
+	//登陆验证
+	public function login($username, $password) {
+		$data = array(
+			'login_username' => $username,
+			'password' => $password,
+		);
+		
+		//where条件
+		$map = array();
+		
+		if ($this->create($data)) {
+			//这里采用邮箱登陆
+			$map['email'] = $username;				
+		} else {
+			if($this->getError() == 'noemail') {
+				//这里采用用户名登陆
+				$map['username'] = $username;
+			} else {
+				echo $this->getError();
+			}
+		}
+		
+		$user = $this->field('id, password')->where($map)->find();
+		if ($user['password'] == $password) {
+			return $user['id'];
+		} else {
+			return -9;	//用户密码错误
+		}
 		
 	}
 }

@@ -9,6 +9,21 @@ $(function(){
 	//登录页按钮
 	$("#login input[type='submit']").button();
 	
+	//自定义验证，不得包含@符号
+	$.validator.addMethod('inAt', function(value, element) {
+		var text = /^[^@]+$/i;
+		return this.optional(element) || (text.test(value));
+	}, '存在@符号');
+	
+	$('#login').validate({
+		submitHandler: function(form){
+			$(form).ajaxSubmit({
+				url: ThinkPHP['MODULE']  + '/User/login',
+				type: 'POST',
+			});
+		},
+	});
+	
 	//创建注册对话框
 	$("#register").dialog({
 		width: 430,
@@ -33,6 +48,7 @@ $(function(){
 		rules: {
 			username: {
 				required: true,
+				inAt: true,
 				minlength: 2,
 				maxlength: 20,
 				remote: {
@@ -82,6 +98,7 @@ $(function(){
 		messages: {
 			username: {
 				required: '账号不得为空',
+				inAt: '账号不得包含@符号',
 				minlength: $.format('账号不得小于{0}位！'),
 				maxlength: $.format('账号不得大于{0}位！'),
 				remote: '账号被占用',
@@ -213,6 +230,7 @@ $(function(){
 					if (responseText) {
 						$('#loading').css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('数据新增成功...');
 						setTimeout(function() {
+							$('#register').dialog('close');
 							$('#verify_register').dialog('close');		//关闭注册界面
 							$('#loading').dialog('close');		//关闭提示界面
 							$('#verify_register').resetForm();			//还原注册表单

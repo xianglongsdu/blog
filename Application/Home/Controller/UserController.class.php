@@ -22,6 +22,8 @@ class UserController extends Controller {
 			$user = new UserModel();
 			$uid = $user->checkField(I('username'), 'username');
 			echo $uid > 0? 'true' : 'false';
+		} else {
+			$this->error('非法访问');
 		}
 	}
 	
@@ -31,6 +33,8 @@ class UserController extends Controller {
 			$user = new UserModel();
 			$uid = $user->checkField(I('email'), 'email');
 			echo $uid > 0? 'true' : 'false';
+		} else {
+			$this->error('非法访问');
 		}
 	}
 	
@@ -40,6 +44,19 @@ class UserController extends Controller {
 			$user = new UserModel();
 			$uid = $user->checkField(I('verify'), 'verify');
 			echo $uid > 0? 'true' : 'false';
+		} else {
+			$this->error('非法访问');
+		}
+	}
+	
+	//Ajax验证数据，账号返回给Ajax
+	public function login() {
+		if (IS_AJAX) {
+			$user = new UserModel();
+			$uid = $user->login(I('username'), I('password'));
+			echo $uid;
+		} else {
+			$this->error('非法访问');
 		}
 	}
 }
