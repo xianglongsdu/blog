@@ -20,7 +20,48 @@ $(function(){
 			$(form).ajaxSubmit({
 				url: ThinkPHP['MODULE']  + '/User/login',
 				type: 'POST',
+				beforeSubmit: function() {
+					$('#loading').dialog('open');
+				},
+				success: function(responseText) {
+					if (responseText == -9) {
+						$('#loading').dialog('option', 'width', 200).css('background', 'url(' + ThinkPHP['IMG'] + '/warning.png) no-repeat 20px center').html('账号或密码不正确...');
+						setTimeout(function(){
+							$('#loading').dialog('close');
+							$('#loading').dialog('option', 'width', 180).css('background', 'url(' + ThinkPHP['IMG'] + '/loading.gif) no-repeat 20px center').html('数据交互中...');
+						}, 2000);
+					} else {
+						$('#loading').dialog('option', 'width', 220).css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('登录成功，跳转中...');
+						setTimeout(function(){
+							location.href = 'http://www.baidu.com';
+						}, 1000);
+					}
+				},
 			});
+		},
+		rules: {
+			username: {
+				required: true,
+				minlength: 2,
+				maxlength: 50,
+			},
+			password: {
+				required: true,
+				minlength: 6,
+				maxlength: 30,
+			},
+		},
+		messages: {
+			username: {
+				required: '账号不得为空',
+				minlength: $.format('账号不得小于{0}位！'),
+				maxlength: $.format('账号不得大于{0}位！'),
+			},
+			password: {
+				required: '密码不得为空',
+				minlength: $.format('密码不得小于{0}位！'),
+				maxlength: $.format('密码不得大于{0}位！'),
+			},
 		},
 	});
 	

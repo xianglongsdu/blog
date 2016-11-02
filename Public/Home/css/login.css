@@ -89,6 +89,18 @@ body {
 	text-decoration: underline;
 }
 
+#login span.username, #login span.password {
+	position: relative;
+}
+
+#login span.username label.error, #login span.password label.error {
+	position: absolute;
+	right: 20px;
+	bottom: 0px;
+	
+	color: #f90;
+}
+
 #footer {
 	position: absolute;
 	bottom: 0;

@@ -52,6 +52,7 @@ class UserController extends Controller {
 	//Ajax验证数据，账号返回给Ajax
 	public function login() {
 		if (IS_AJAX) {
+			sleep(3);
 			$user = new UserModel();
 			$uid = $user->login(I('username'), I('password'));
 			echo $uid;
