@@ -67,7 +67,7 @@
 		
 		<div id="loading">数据交互中...</div>
 		
-		<form id="verify_register">
+		<form id="verify_register" form-click="">
 			<ol class="ver_error"></ol>
 			<p>
 				<label for="verify">验证码：</label>

@@ -17,27 +17,8 @@ $(function(){
 	
 	$('#login').validate({
 		submitHandler: function(form){
-			$(form).ajaxSubmit({
-				url: ThinkPHP['MODULE']  + '/User/login',
-				type: 'POST',
-				beforeSubmit: function() {
-					$('#loading').dialog('open');
-				},
-				success: function(responseText) {
-					if (responseText == -9) {
-						$('#loading').dialog('option', 'width', 200).css('background', 'url(' + ThinkPHP['IMG'] + '/warning.png) no-repeat 20px center').html('账号或密码不正确...');
-						setTimeout(function(){
-							$('#loading').dialog('close');
-							$('#loading').dialog('option', 'width', 180).css('background', 'url(' + ThinkPHP['IMG'] + '/loading.gif) no-repeat 20px center').html('数据交互中...');
-						}, 2000);
-					} else {
-						$('#loading').dialog('option', 'width', 220).css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('登录成功，跳转中...');
-						setTimeout(function(){
-							location.href = 'http://www.baidu.com';
-						}, 1000);
-					}
-				},
-			});
+			$("#verify_register").attr('form-click', 'login');
+			$("#verify_register").dialog('open');
 		},
 		rules: {
 			username: {
@@ -83,6 +64,7 @@ $(function(){
 		
 	}).validate({
 		submitHandler: function() {
+			$("#verify_register").attr('form-click', 'register');
 			$("#verify_register").dialog('open');
 		},
 		
@@ -258,28 +240,52 @@ $(function(){
 		}],	
 	}).validate({
 		submitHandler: function(form) {
-			$('#register').ajaxSubmit({
-				url: ThinkPHP["MODULE"] + "/User/register",
-				type: "POST",
-				data: {
-					verify: $('#verify').val(),
-				},
-				beforeSubmit: function() {
-					$('#loading').dialog('open');
-				},
-				success: function(responseText) {
-					if (responseText) {
-						$('#loading').css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('数据新增成功...');
-						setTimeout(function() {
-							$('#register').dialog('close');
-							$('#verify_register').dialog('close');		//关闭注册界面
-							$('#loading').dialog('close');		//关闭提示界面
-							$('#verify_register').resetForm();			//还原注册表单
-							$('#span.star').html('*').removeClass('succ');		//恢复*去掉对号
-						}, 1000);
-					}
-				},
-			});
+			if ($("#verify_register").attr('form-click') == 'register') {
+				$('#register').ajaxSubmit({
+					url: ThinkPHP["MODULE"] + "/User/register",
+					type: "POST",
+					data: {
+						verify: $('#verify').val(),
+					},
+					beforeSubmit: function() {
+						$('#loading').dialog('open');
+					},
+					success: function(responseText) {
+						if (responseText) {
+							$('#loading').css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('数据新增成功...');
+							setTimeout(function() {
+								$('#register').dialog('close');
+								$('#verify_register').dialog('close');		//关闭注册界面
+								$('#loading').dialog('close');		//关闭提示界面
+								$('#verify_register').resetForm();			//还原注册表单
+								$('#span.star').html('*').removeClass('succ');		//恢复*去掉对号
+							}, 1000);
+						}
+					},
+				});
+			} else if ($("#verify_register").attr('form-click') == 'login') {
+				$(form).ajaxSubmit({
+					url: ThinkPHP['MODULE']  + '/User/login',
+					type: 'POST',
+					beforeSubmit: function() {
+						$('#loading').dialog('open');
+					},
+					success: function(responseText) {
+						if (responseText == -9) {
+							$('#loading').dialog('option', 'width', 200).css('background', 'url(' + ThinkPHP['IMG'] + '/warning.png) no-repeat 20px center').html('账号或密码不正确...');
+							setTimeout(function(){
+								$('#loading').dialog('close');
+								$('#loading').dialog('option', 'width', 180).css('background', 'url(' + ThinkPHP['IMG'] + '/loading.gif) no-repeat 20px center').html('数据交互中...');
+							}, 2000);
+						} else {
+							$('#loading').dialog('option', 'width', 220).css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('登录成功，跳转中...');
+							setTimeout(function(){
+								location.href = 'http://www.baidu.com';
+							}, 1000);
+						}
+					},
+				});
+			}
 		},
 		rules: {
 			verify: {
