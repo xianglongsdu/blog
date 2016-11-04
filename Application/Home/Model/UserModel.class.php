@@ -98,8 +98,27 @@ class UserModel extends Model {
 			}
 		}
 		
-		$user = $this->field('id, password')->where($map)->find();
+		$user = $this->field('id, username, password, last_login, last_ip')->where($map)->find();
 		if ($user['password'] == $password) {
+			
+			//更新登陆信息
+			$update = array(
+				'id' 			=> $user['id'],
+				'last_login'	=> NOW_TIME,
+				'last_ip'		=> get_client_ip(1),	//参数1表示返回long型数字
+			);
+			$this->save($update);
+			
+			//登陆信息写入SESSION
+			$auth = array(
+				'id'			=> $user['id'],
+				'username'		=> $user['username'],
+				'last_login'	=> $user['last_login'],
+				'last_ip'		=> $user['last_ip'],
+			);
+			
+			session('user_auth', $auth);
+		
 			return $user['id'];
 		} else {
 			return -9;	//用户密码错误

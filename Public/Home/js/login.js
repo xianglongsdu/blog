@@ -264,7 +264,7 @@ $(function(){
 					},
 				});
 			} else if ($("#verify_register").attr('form-click') == 'login') {
-				$(form).ajaxSubmit({
+				$('#login').ajaxSubmit({
 					url: ThinkPHP['MODULE']  + '/User/login',
 					type: 'POST',
 					beforeSubmit: function() {
@@ -280,7 +280,7 @@ $(function(){
 						} else {
 							$('#loading').dialog('option', 'width', 220).css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('登录成功，跳转中...');
 							setTimeout(function(){
-								location.href = 'http://www.baidu.com';
+								location.href = ThinkPHP['INDEX'];
 							}, 1000);
 						}
 					},

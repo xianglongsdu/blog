@@ -1,9 +1,8 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
 use Home\Model\UserModel;
 
-class UserController extends Controller {
+class UserController extends HomeController {
 	//注册行为返回Ajax
 	public function register() {
 		if (IS_AJAX) {

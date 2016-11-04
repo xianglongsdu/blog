@@ -13,7 +13,8 @@
 		<script type="text/javascript">
 			var ThinkPHP = {
 				"IMG" : "__PUBLIC__/{:MODULE_NAME}/img",
-				"MODULE" : "__MODULE__"
+				"MODULE" : "__MODULE__",
+				"INDEX"	: "{:U('Index/index')}",
 			};
 		</script>
 	</head>

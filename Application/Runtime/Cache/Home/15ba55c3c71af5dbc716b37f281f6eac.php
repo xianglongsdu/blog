@@ -13,7 +13,8 @@
 		<script type="text/javascript">
 			var ThinkPHP = {
 				"IMG" : "/Public/<?php echo MODULE_NAME;?>/img",
-				"MODULE" : "/index.php/Home"
+				"MODULE" : "/index.php/Home",
+				"INDEX"	: "<?php echo U('Index/index');?>",
 			};
 		</script>
 	</head>
