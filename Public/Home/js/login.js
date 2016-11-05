@@ -280,7 +280,7 @@ $(function(){
 						} else {
 							$('#loading').dialog('option', 'width', 220).css('background', 'url(' + ThinkPHP['IMG'] + '/reg_success.png) no-repeat 20px center').html('登录成功，跳转中...');
 							setTimeout(function(){
-								location.href = ThinkPHP['INDEX'];
+								// location.href = ThinkPHP['INDEX'];
 							}, 1000);
 						}
 					},

@@ -3,7 +3,12 @@ namespace Home\Controller;
 
 class LoginController extends HomeController {
 	public function index() {
-		$this->display();
+		if (!session('?user_auth')) {
+			$this->display();
+		} else {
+			$this->redirect('Index/index');
+		}
+		
 	}
 	
 	public function verify() {

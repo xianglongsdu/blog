@@ -77,7 +77,7 @@ class UserModel extends Model {
 	}
 	
 	//登陆验证
-	public function login($username, $password) {
+	public function login($username, $password, $auto) {
 		$data = array(
 			'login_username' => $username,
 			'password' => $password,
@@ -119,6 +119,11 @@ class UserModel extends Model {
 			
 			session('user_auth', $auth);
 		
+			//用户名加密写入COOKIE
+			if ($auto == 'on') {
+				cookie('auto', encryption($user['username']), 3600 * 24 * 30);
+			}
+			
 			return $user['id'];
 		} else {
 			return -9;	//用户密码错误

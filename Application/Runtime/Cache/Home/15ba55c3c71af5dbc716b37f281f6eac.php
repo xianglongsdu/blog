@@ -26,6 +26,7 @@
 				<div class="top">
 					<span class="username">
 						<input type="text" name="username" placeholder="用户名/邮箱">
+						<label class="auto" for="auto"><input type="checkbox" id="auto" name="auto">自动登录</label>
 					</span>
 					<span class="password">
 						<input type="password" name="password" placeholder="密码">
@@ -47,7 +48,7 @@
 			<p>
 				<label for="username">账号：</label>
 				<input type="text" name="username" class="text" id="username" placeholder="昵称，不小于两位！">
-				<span class="star">*</span>
+				<span class="star">*</span>				
 			</p>
 			<p>
 				<label for="password">密码：</label>

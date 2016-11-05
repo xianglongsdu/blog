@@ -101,6 +101,12 @@ body {
 	color: #f90;
 }
 
+#login label.auto {
+	position: absolute;
+	top: 40px;
+	left: 20px;
+}
+
 #footer {
 	position: absolute;
 	bottom: 0;

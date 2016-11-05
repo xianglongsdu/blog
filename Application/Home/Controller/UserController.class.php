@@ -53,7 +53,7 @@ class UserController extends HomeController {
 		if (IS_AJAX) {
 			sleep(3);
 			$user = new UserModel();
-			$uid = $user->login(I('username'), I('password'));
+			$uid = $user->login(I('username'), I('password'), I('auto'));
 			echo $uid;
 		} else {
 			$this->error('非法访问');
