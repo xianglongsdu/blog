@@ -113,15 +113,15 @@ class UserModel extends Model {
 			$auth = array(
 				'id'			=> $user['id'],
 				'username'		=> $user['username'],
-				'last_login'	=> $user['last_login'],
+				'last_login'	=> NOW_TIME,
 				'last_ip'		=> $user['last_ip'],
 			);
 			
 			session('user_auth', $auth);
 		
-			//用户名加密写入COOKIE
+			//用户名和IP加密写入COOKIE
 			if ($auto == 'on') {
-				cookie('auto', encryption($user['username']), 3600 * 24 * 30);
+				cookie('auto', encryption($user['username']. '|' .get_client_ip()), 3600 * 24 * 30);
 			}
 			
 			return $user['id'];
