@@ -3,7 +3,6 @@ namespace Home\Controller;
 
 class LoginController extends HomeController {
 	public function index() {
-		$this->login();
 		if (!session('?user_auth')) {		//只有当session不存在时才可以看到登录界面
 			$this->display();
 		} else {
