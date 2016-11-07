@@ -1,16 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-<title>微博系统--我的首页</title>
-<script type="text/javascript" src="/Public/Home/js/jquery.js"></script>
-<script type="text/javascript" src="/Public/Home/js/jquery.ui.js"></script>
-<script type="text/javascript" src="/Public/Home/js/index.js"></script>
-<link rel="stylesheet" href="/Public/Home/css/jquery.ui.css">
-<link rel="stylesheet" href="/Public/Home/css/index.css">
-</head>
-<body>
-	<div id="header">
+<div id="header">
 	<div class="header_main">
 		<div class="logo">微博系统</div>
 		<div class="nav">
@@ -52,12 +40,3 @@
 		</div>
 	</div>
 </div>
-	<div id="main">
-main
-</div>
-	<div id="footer">
-	<div class="footer_left">&copy; 2014 juedi.com All Rights Reserved.</div>
-	<div class="footer_right">Powered By ThinkPHP.</div>
-</div>
-</body>
-</html>

@@ -1,6 +1,6 @@
-//起始CSS
+/*起始CSS*/
 
-body, h1, h2, h3, h4, h5, h6, ol, ul, p, form {
+body, h1, h2, h3, h4, h5, h6, ol, ul, p, form, dl, dt, dd {
 	margin: 0;
 	padding: 0;
 }
@@ -38,15 +38,48 @@ ul, ol {
 
 #header .nav {
 	float: left;
+	height: 42px;
 	margin: 0 0 0 30px;
 }
 
 #header .person {
 	float: right;
+	font-size: 16px;
+	color: #fff;
+}
+
+#header .person li {
+	padding: 0 10px;
 }
 
 #header .person a {
 	font-size: 13px;
+}
+
+#header .app {
+	padding: 0 10px;
+	position: relative;
+	cursor: pointer;
+}
+
+#header dl.list {
+	width: 100px;
+	background: #fff;
+	border: 1px solid #666;
+	position: absolute;
+	top: 42px;
+	left: -50px;
+	display: none;
+}
+
+#header dl.list a {
+	color: #444;
+	height: 30px;		/*覆盖掉继承的height和line-height*/
+	line-height: 30px;
+}
+
+#header dl.list a.line {
+	border-top: 1px solid #eee;
 }
 #header .search {
 	position: relative;
@@ -77,14 +110,16 @@ ul, ol {
 
 #header ul li {
 	float: left;
+	margin-left: 5px;
 	height: 42px;
 	line-height: 42px;
+
 }
 
 #header ul li a {
 	display: block;
 	padding: 0 10px;
-	font-size: 14px;
+	font-size: 16px;
 	color: #fff;
 	text-decoration: none;
 }
