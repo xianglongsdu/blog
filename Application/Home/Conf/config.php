@@ -7,5 +7,12 @@ return array(
 	),
 	
 	//cookie秘钥
-	'COOKIE_KEY'	=> 'www.juedi.com',
+	'COOKIE_KEY'			=> 'www.juedi.com',
+	
+	//错误跳转模板
+	'TMPL_ACTION_ERROR'		=> 'Public/jump',
+	
+	//成功跳转模板
+	'TMPL_ACTION_SUCCESS'	=> 'Public/jump',
+	
 );

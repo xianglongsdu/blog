@@ -51,12 +51,22 @@ class UserController extends HomeController {
 	//Ajax验证数据，账号返回给Ajax
 	public function login() {
 		if (IS_AJAX) {
-			sleep(3);
 			$user = new UserModel();
 			$uid = $user->login(I('username'), I('password'), I('auto'));
 			echo $uid;
 		} else {
 			$this->error('非法访问');
 		}
+	}
+	
+	//退出登录
+	public function logout() {
+		//清除session
+		session(null);
+		
+		//清理自动登录生成的cookie
+		cookie('auto', null);
+		
+		$this->success('退出成功', U('Login/index'));
 	}
 }
