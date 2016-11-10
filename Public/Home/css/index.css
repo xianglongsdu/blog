@@ -195,6 +195,16 @@ ul, ol {
 	background: #f7f7f7;
 }
 
+#error {
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	line-height: 25px;
+	text-indent: 40px;
+	
+	background: url(../img/error.png) no-repeat 20px center;
+}
+
 #footer {
 	margin: 0 auto;
 	width: 1200px;

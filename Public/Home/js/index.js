@@ -19,7 +19,19 @@ $(function() {
 	};
 	
 	//微博发布的按钮
-	$('.weibo_button').button();
+	$('.weibo_button').button().click(function() {
+		if ($('.weibo_text').val().length == 0) {
+			$("#error").html('请输入微博内容...').dialog('open');
+			setTimeout(function() {
+				$("#error").html('...').dialog('close');
+				$('.weibo_text').focus();
+			}, 1000);
+		} else {
+			if (weibo_num()) {
+				alert('提交发布');
+			}
+		}
+	});
 
 	//微博输入内容计算字个数
 	$('.weibo_text').on('keyup', weibo_num);
@@ -38,9 +50,27 @@ $(function() {
 			}
 			
 			var result = parseInt((total - temp) / 2);
-			$('.weibo_num').html('您还可以输入<strong>' + result + '</strong>个字');
+			if (result > 0) {
+				$('.weibo_num').html('您还可以输入<strong>' + result + '</strong>个字');
+				return true;
+			} else {
+				result = -result;
+				$('.weibo_num').html('您已超过了<strong>' + result + '</strong>个字');
+				return false;
+			}
 		}
 	}
+	
+	//error
+	$("#error").dialog({
+		width: 180,
+		height: 40,
+		modal: true,
+		closeOnEscape: false,    //不允许按Escape键关闭
+		resizable: false,
+		autoOpen: false,
+		draggable: false,
+	}).parent().find('.ui-dialog-titlebar').hide();
 	
 	
 });
