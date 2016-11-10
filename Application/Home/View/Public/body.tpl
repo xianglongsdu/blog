@@ -1,3 +1,3 @@
 <div id="main">
-main
+	<block name="main"></block>
 </div>

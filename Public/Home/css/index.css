@@ -19,6 +19,7 @@ ul, ol {
 	height: 42px;
 	top: 0px;		/*top定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移*/
 	background: #666;
+	z-index: 9999;
 }
 
 #header .header_main {		/*header_main的主要作用是使header里的内容居中*/
@@ -138,6 +139,60 @@ ul, ol {
 	margin: 58px auto 0 auto;
 	background: #fff;
 	box-shadow: 0 0 5px #ccc;		/*给main区域加上阴影*/
+}
+
+#main .main_left {
+	float: left;
+	padding: 0 20px;
+	width: 860px;
+	min-height: 800px;
+}
+
+#main .main_left .left {
+	float: left;
+	padding: 30px 0 0 0;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	
+}
+
+#main .main_left .right {
+	float: right;
+	padding: 30px 0 0 0;
+	font-size: 13px;
+	color: #ccc;
+}
+
+#main .main_left .right strong {
+	padding: 0 5px;
+	font-size: 22px;
+	color: #049;
+}
+#main .main_left .weibo_text {
+	resize: none;		/*不允许改变大小*/
+	width: 840px;		/*左右margin+左右padding+左右border=父元素的width，即9+9+1+1+840=860*/
+	height: 80px;
+	background: #fff;
+	border: 1px solid #ddd;
+	padding: 9px;
+	color: #666;
+	font-size: 16px;
+}
+
+#main .main_left .weibo_button {
+	float: right;
+	margin: 5px 0 0 0;
+	width: 90px;
+	font-size: 14px;
+}
+
+#main .main_right {
+	float: right;
+	width: 299px;
+	min-height: 800px;
+	border-left: 1px solid #ddd;
+	background: #f7f7f7;
 }
 
 #footer {
