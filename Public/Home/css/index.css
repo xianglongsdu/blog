@@ -187,6 +187,18 @@ ul, ol {
 	font-size: 14px;
 }
 
+#main .main_left .weibo_face {
+	float: left;
+	font-size: 13px;
+	color: #666;
+	text-decoration: none;
+	
+}
+
+#main .main_left .weibo_face:hover {
+	text-decoration: underline;
+}
+
 #main .main_right {
 	float: right;
 	width: 299px;

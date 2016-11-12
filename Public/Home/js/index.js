@@ -36,6 +36,14 @@ $(function() {
 	//微博输入内容计算字个数
 	$('.weibo_text').on('keyup', weibo_num);
 	
+	//微博输入内容得到光标计算字个数
+	/* $('.weibo_text').change(function() {
+		weibo_num();
+	}); */
+	$('.weibo_text').focus(function(){
+		setTimeout(function() {weibo_num();}, 50);
+	});
+	
 	function weibo_num() {
 		var total = 280;
 		var len = $(this).val().length;
