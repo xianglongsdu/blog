@@ -217,6 +217,16 @@ ul, ol {
 	background: url(../img/error.png) no-repeat 20px center;
 }
 
+#loading {
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	line-height: 20px;
+	text-indent: 30px;
+	
+	background: url(../img/loading.gif) no-repeat 20px center;
+}
+
 #footer {
 	margin: 0 auto;
 	width: 1200px;
